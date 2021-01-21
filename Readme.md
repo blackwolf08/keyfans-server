@@ -1,9 +1,10 @@
-# Key Fans Server
-
-### ASD Project
-
 Typescript
 MikroORM
 NodeJS
 GraphQL
 Postgres SQL
+
+```cmd
+yarn watch
+yarn dev
+```
