@@ -6,6 +6,8 @@ import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { InitResolver } from "./resolvers/init";
 import chalk from "chalk";
+import { PostResolver } from "./resolvers/posts";
+import "reflect-metadata";
 
 const main = async () => {
   // ORM
@@ -18,9 +20,10 @@ const main = async () => {
   //  GraphQL
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [InitResolver],
+      resolvers: [InitResolver, PostResolver],
       validate: false,
     }),
+    context: () => ({ em: orm.em }),
   });
 
   apolloServer.applyMiddleware({ app });
